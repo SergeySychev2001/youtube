@@ -1,0 +1,42 @@
+.header {
+    background-color: white;
+}
+
+.header .header-wrap{
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header .header__nav{
+    display: flex;
+    flex-direction: row;
+}
+
+.header .button{
+    position: relative;
+    height: 100%;
+    width: 133px;
+    color: #1390E5;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto';
+    border: none;
+    background-color: inherit;
+}
+
+.header .active::before{
+    position: absolute;
+    content: '';
+    top: 93.7%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 5px;
+    background-color: #1390E5;
+}
+
+.header .button:focus{
+    outline: none;
+}

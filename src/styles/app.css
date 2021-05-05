@@ -1,0 +1,35 @@
+.app{
+    background-color: #F5F5F5;
+    flex: 1;
+}
+
+.container {
+    width: 1040px;
+    margin: 0 auto;
+}
+
+input[type="text"], input[type="password"]{
+    font-family: 'Roboto';
+    outline: none;
+    background-color: white;
+    border: 1px solid rgba(23, 23, 25, 0.2);
+    font-size: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus{
+    outline: none;
+    background-color: rgba(197, 228, 249, 0.3);
+    border: 1px solid #1390E5;
+}
+
+input[type="submit"]{
+    background-color: #1390E5;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}

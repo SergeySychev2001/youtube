@@ -1,0 +1,28 @@
+.authorization__form{
+    background-color: white;
+    width: 510px;
+    height: 520px;
+    border: 1px solid rgba(39, 39, 39, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.authorization__form .form__title{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.authorization__form .form__field{
+    margin-top: 42px;
+    width: 334px;
+    height: 48px;
+}
+
+.authorization__form .form__submit{
+    margin-top: 40px;
+    width: 176px;
+    height: 52px;
+}

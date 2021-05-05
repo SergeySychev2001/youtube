@@ -1,0 +1,27 @@
+.list__item{
+    display: flex;
+    flex-direction: row;
+}
+.list__item .item__video{
+    height: 100%;
+    width: 157px;
+    margin-right: 20px;
+    background-color: red;
+}
+.list__item .item__body{
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.list__item .item__title{
+    flex: 0 0 49%;
+    font-weight: 500;
+    font-size: 16px;
+}
+.list__item .item__description{
+    flex: 0 0 49%;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(23, 23, 25, 0.3);
+}

@@ -1,0 +1,23 @@
+.search-default{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.search-default .search__form{
+    margin-top: 160px;
+    height: 142px;
+    width: 686px;
+    align-items: stretch;
+}
+
+.search-default .search__form .form__title{
+    font-size: 36px;
+    text-align: center;
+}
+
+.search-default .search__form .form__body{
+    margin-top: 44px;
+}
