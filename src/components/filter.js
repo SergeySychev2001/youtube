@@ -6,13 +6,17 @@ import listSelected from '../image/list/list-selected.svg';
 import grid from '../image/grid/grid.svg';
 import list from '../image/list/list.svg';
 
-const Filter = ({filterType, setFilterType}) => {
+const Filter = ({filterType, setFilterType, totalResults, requestName}) => {
+
+    const name = requestName ? `Видео по запросу "${requestName}"` : '';
+    const count = totalResults ? `${totalResults}` : ''
+
     return(
         <div className="filter">
             <div className="filter__header">
                 <div className="header__body">
-                    <div className="header__name">Видео по запросу "Чем кормить кота"</div>
-                    <div className="header__count">7333</div>
+                    <div className="header__name">{name}</div>
+                    <div className="header__count">{count}</div>
                 </div>
                 <div className="header__view">
                     <div className="view__item" onClick={() => setFilterType('list')}>

@@ -3,17 +3,24 @@
     height: 226px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     box-sizing: border-box;
 }
 
 .grid__item .item__video{
+    box-sizing: border-box;
     width: 100%;
     height: 138px;
     background-color: blue;
 }
 
+.grid__item .item__video img{
+    width: 100%;
+    height: 100%;
+}
+
 .grid__item .item__title{
+    overflow: hidden;
+    margin-top: 8px;
     width: 100%;
     height: 32px;
     font-weight: 500;
@@ -21,9 +28,23 @@
 }
 
 .grid__item .item__description{
+    margin-top: 8px;
     width: 100%;
     height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-weight: 400;
     font-size: 14px;
     color: rgba(23, 23, 25, 0.3);
 }
+
+.grid__item .item__description .item__count, 
+.grid__item .item__description .item__channel-title{
+    overflow: hidden;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(23, 23, 25, 0.3);
+}
+

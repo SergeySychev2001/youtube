@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const KEY = 'AIzaSyB0NARK8wk_3gT948qOpLEMBW-Ry6iLxjg';
+const KEY = 'AIzaSyB1jSPYDdlDZZa-jsAQyP_0jqpEK2A5lVg';
 
 const youtube = axios.create({
                 baseURL: 'https://www.googleapis.com/youtube/v3/',
                 params:{
                     part: 'snippet',
-                    maxResults: '2',
+                    maxResults: '12',
                     key: KEY,
                     type: 'video'
                 }
@@ -25,16 +25,17 @@ const search = (text) => {
             });
 }
 
-const videoInfo = async (text) => {
-    return await search(text)
+const videoInfo = (text) => {
+    return search(text)
     .then(({totalResults, videoId}) => {
-        youtube.get('/videos', {
-            params:{
-                id: videoId.join(','),
-                part: 'snippet, statistics'
-            }
+        return  youtube.get('/videos', {
+                    params:{
+                        id: videoId.join(','),
+                        part: 'snippet, statistics'
+                }
         }).then(({data}) => {
             return {
+                requestName: text,
                 totalResults,
                 videoList:  data.items.map(({id, snippet, statistics}) => {
                                 return {

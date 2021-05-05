@@ -8,6 +8,12 @@
     margin-right: 20px;
     background-color: red;
 }
+
+.list__item .item__video img{
+    width: 100%;
+    height: 100%;
+}
+
 .list__item .item__body{
     width: 510px;
     display: flex;
@@ -21,6 +27,14 @@
 }
 .list__item .item__description{
     flex: 0 0 49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.list__item .item__description .item__channel-title,
+.list__item .item__description .item__count{
+    overflow: hidden;
     font-weight: 500;
     font-size: 16px;
     color: rgba(23, 23, 25, 0.3);

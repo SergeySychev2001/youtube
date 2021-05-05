@@ -20,11 +20,21 @@ const fetchVideoListRequest = () => {
     }
 }
 
-// const updateVideoList = (dispatch) => {
-//     dispatch(fetchVideoListRequest());
-//     // search('ter');
-//     // .then(data => console.log(data))
-//     // .catch(error => dispatch(fetchVideoListFailure(error)));
+const updateVideoList = (dispatch) => (text) => {
+    dispatch(fetchVideoListRequest());
+    videoInfo(text)
+    .then(data => dispatch(fetchVideoListSuccess(data)))
+    .catch(error => dispatch(fetchVideoListFailure(error)));
+}
+
+const modalIsVisible = () => {
+    return {
+        type:'MODAL_IS_VISIBLE'
+    }
+}
+
+// const modalIsVisible =  {
+//     type:'MODAL_IS_VISIBLE'
 // }
 
-// export {updateVideoList};
+export {updateVideoList, modalIsVisible};
