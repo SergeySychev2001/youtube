@@ -1,4 +1,4 @@
-import {search, videoInfo} from '../../services/youtube';
+import {videoInfo} from '../../services/youtube';
 
 const fetchVideoListSuccess = (data) => {
     return {
@@ -20,21 +20,40 @@ const fetchVideoListRequest = () => {
     }
 }
 
-const updateVideoList = (dispatch) => (text) => {
+const updateVideoList = (dispatch) => (requestName, maxResults = 12, order = 'relevance') => {
     dispatch(fetchVideoListRequest());
-    videoInfo(text)
+    videoInfo(requestName, maxResults, order)
     .then(data => dispatch(fetchVideoListSuccess(data)))
     .catch(error => dispatch(fetchVideoListFailure(error)));
 }
 
-const modalIsVisible = () => {
-    return {
-        type:'MODAL_IS_VISIBLE'
+const favouriteListItemIsAdded = (data) => {
+    return{
+        type: 'FAVOURITELIST_ITEM_IS_ADDED',
+        payload: data
     }
 }
 
-// const modalIsVisible =  {
-//     type:'MODAL_IS_VISIBLE'
-// }
+const favouriteListItemIsUpdate = (id, data) => {
+    return{
+        type: 'FAVOURITELIST_ITEM_IS_UPDATE',
+        payload: {
+            id, 
+            data
+        }
+    }
+}
 
-export {updateVideoList, modalIsVisible};
+const favouriteListItemIsDeleted = (id) => {
+    return{
+        type: 'FAVOURITELIST_ITEM_IS_DELETED',
+        payload: id
+    }
+}
+
+export {
+    updateVideoList, 
+    favouriteListItemIsAdded, 
+    favouriteListItemIsUpdate, 
+    favouriteListItemIsDeleted
+    };

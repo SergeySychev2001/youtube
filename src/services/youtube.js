@@ -12,10 +12,12 @@ const youtube = axios.create({
                 }
             });
 
-const search = (text) => {
+const search = (requestName, maxResults, order) => {
     return youtube.get('/search', {
                 params: {
-                    q: text
+                    q: requestName,
+                    maxResults,
+                    order
                 }
             }).then(({data}) => {
                 return {
@@ -25,8 +27,8 @@ const search = (text) => {
             });
 }
 
-const videoInfo = (text) => {
-    return search(text)
+const videoInfo = (requestName, maxResults, order) => {
+    return search(requestName, maxResults, order)
     .then(({totalResults, videoId}) => {
         return  youtube.get('/videos', {
                     params:{
@@ -35,7 +37,7 @@ const videoInfo = (text) => {
                 }
         }).then(({data}) => {
             return {
-                requestName: text,
+                requestName,
                 totalResults,
                 videoList:  data.items.map(({id, snippet, statistics}) => {
                                 return {

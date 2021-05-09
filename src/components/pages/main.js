@@ -5,6 +5,7 @@ import Body from './main/body';
 import Header from './main/header';
 
 const Main = () => {
+
     return(
         <div className="main">
             <Header/>

@@ -5,11 +5,11 @@ import '../../styles/list/list.css';
 const List = ({videoList}) => {
 
     const listItems = videoList.map(({channelTitle, thumbnail, viewCount, videoTitle, videoId}) => {
-        return <ListItem    key={videoId} 
-                            video={thumbnail} 
-                            title={videoTitle} 
+        return <ListItem    videoId={videoId} 
+                            thumbnail={thumbnail} 
+                            videoTitle={videoTitle} 
                             channelTitle={channelTitle} 
-                            count={viewCount}/>
+                            viewCount={viewCount}/>
     });
 
     return(

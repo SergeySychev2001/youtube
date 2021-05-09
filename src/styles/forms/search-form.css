@@ -33,6 +33,7 @@
 
 .search__form .form__favourite-btn{
     position: absolute;
+    cursor: pointer;
     top: 50%;
     right: 160px;
     transform: translate(0, -40%);

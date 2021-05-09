@@ -1,11 +1,40 @@
 .request-list__item{
     height: 47px;
     background-color: #fff;
-    border-bottom: 1px solid #F1F1F1;;
+    border-bottom: 1px solid #F1F1F1;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     font-size: 16px;
     font-weight: 500;
     padding: 0 20px;
+}
+
+.request-list__item .item__title{
+    cursor: pointer;
+}
+
+.request-list__item .item__btns{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.request-list__item .item__edit-btn, .request-list__item .item__delete-btn{
+    background-color: inherit;
+    opacity: 0.0;
+    border: none;
+    outline: none;
+}
+
+.request-list__item:hover .item__edit-btn, .request-list__item:hover .item__delete-btn{
+    background-color: inherit;
+    opacity: 0.3;
+}
+
+.request-list__item:hover .item__edit-btn:hover, .request-list__item:hover .item__delete-btn:hover{
+    background-color: inherit;
+    opacity: 0.6;
 }

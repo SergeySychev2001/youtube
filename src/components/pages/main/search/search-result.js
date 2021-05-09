@@ -17,7 +17,7 @@ const SearchResult = ({totalResults, requestName, videoList}) => {
 
     return(
         <div className="search-result">
-            <SearchForm/>
+            <SearchForm requestName={requestName}/>
             <Filter filterType={filterType} 
                     setFilterType={setFilterType}
                     totalResults={totalResults}
