@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/modal.css';
-import ModalForm from './forms/modal-form';
 
-const Modal = ({id, input, disableModal}) => {
+const Modal = ({disableModal, children}) => {
 
     const setModalIsInvisible = (event) => {
         if(event.target.className === 'modal'){
@@ -10,9 +9,14 @@ const Modal = ({id, input, disableModal}) => {
         }
     }
 
+    useEffect(() => {
+        document.querySelector('html').style.overflow = 'hidden';
+        return () => document.querySelector('html').style.overflow = 'overlay';
+    }, []);
+
     return(
         <div className="modal" onClick={setModalIsInvisible}>
-            <ModalForm input={input} disableModal={disableModal} id={id}/>
+            {children}
         </div>
     )
 }

@@ -3,9 +3,14 @@ import '../../styles/forms/search-form.css';
 import {updateVideoList} from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import favourite from '../../image/favourites/favourites.svg';
-import Modal from '../modal';
 
-const SearchForm = ({updateVideoList, requestName}) => {
+import Modal from '../modal';
+import FavouriteForm from './favourite-form';
+
+const SearchForm = ({
+                    updateVideoList, 
+                    requestName
+                    }) => {
 
     const [input, setInput] = useState('');
     const [modalMode, setModalMode] = useState(false);
@@ -25,10 +30,11 @@ const SearchForm = ({updateVideoList, requestName}) => {
         setInput(event.target.value);
     }
 
-    const modalContent = modalMode ? (<Modal input={input} disableModal={() => setModalMode(false)}/>) : null;
-
-    modalMode ? document.querySelector('html').style.overflow = 'hidden' : 
-    document.querySelector('html').style.overflow = 'overlay';
+    const modalContent = modalMode ? 
+    (<Modal disableModal={() => setModalMode(false)}>
+        <FavouriteForm input={input} disableModal={() => setModalMode(false)}/>
+    </Modal>) 
+    : null;
 
     return(
         <>

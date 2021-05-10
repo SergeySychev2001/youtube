@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import '../../styles/request-list/request-list-item.css';
+import '../../styles/favourite-list/favourite-list-item.css';
 import Modal from '../modal';
 import {favouriteListItemIsDeleted, updateVideoList} from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import FavouriteForm from '../forms/favourite-form';
 
 
-const RequestListItem = ({  id, 
+const FavouriteListItem = ({  
+                            id, 
                             title, 
                             favouriteList,
                             favouriteListItemIsDeleted,
@@ -16,7 +18,11 @@ const RequestListItem = ({  id,
 
     const [modalMode, setModalMode] = useState(false);
 
-    const modalContent = modalMode ? (<Modal id={`${id}`} disableModal={() => setModalMode(false)}/>) : null;
+    const modalContent = modalMode ? 
+    (<Modal disableModal={() => setModalMode(false)}>
+        <FavouriteForm id={`${id}`} disableModal={() => setModalMode(false)}/>
+    </Modal>) 
+    : null;
 
     const toSearchVideos = () => {
         const requestName = favouriteList[id].requireName;
@@ -28,8 +34,10 @@ const RequestListItem = ({  id,
 
     return(
         <>
-            <li key={id} className="request-list__item">
-                <span className="item__title" onClick={() => toSearchVideos()}>{title}</span>
+            <li key={id} className="favourite-list__item">
+                <span   className="item__title" 
+                        onClick={() => toSearchVideos()}
+                >{title}</span>
                 <div className="item__btns">
                     <button className="item__edit-btn" 
                             onClick={() => {
@@ -38,7 +46,9 @@ const RequestListItem = ({  id,
                                 document.querySelector('html').style.overflow = 'overlay';
                             }}
                     >Редактировать</button>
-                    <button className="item__delete-btn" onClick={() => favouriteListItemIsDeleted(id)}>Удалить</button>
+                    <button className="item__delete-btn" 
+                            onClick={() => favouriteListItemIsDeleted(id)}
+                    >Удалить</button>
                 </div>
             </li>
             {modalContent}
@@ -59,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RequestListItem)); 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FavouriteListItem)); 

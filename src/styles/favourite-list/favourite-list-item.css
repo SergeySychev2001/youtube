@@ -1,4 +1,4 @@
-.request-list__item{
+.favourite-list__item{
     height: 47px;
     background-color: #fff;
     border-bottom: 1px solid #F1F1F1;
@@ -11,30 +11,30 @@
     padding: 0 20px;
 }
 
-.request-list__item .item__title{
+.favourite-list__item .item__title{
     cursor: pointer;
 }
 
-.request-list__item .item__btns{
+.favourite-list__item .item__btns{
     width: 20%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.request-list__item .item__edit-btn, .request-list__item .item__delete-btn{
+.favourite-list__item .item__edit-btn, .favourite-list__item .item__delete-btn{
     background-color: inherit;
     opacity: 0.0;
     border: none;
     outline: none;
 }
 
-.request-list__item:hover .item__edit-btn, .request-list__item:hover .item__delete-btn{
+.favourite-list__item:hover .item__edit-btn, .favourite-list__item:hover .item__delete-btn{
     background-color: inherit;
     opacity: 0.3;
 }
 
-.request-list__item:hover .item__edit-btn:hover, .request-list__item:hover .item__delete-btn:hover{
+.favourite-list__item:hover .item__edit-btn:hover, .favourite-list__item:hover .item__delete-btn:hover{
     background-color: inherit;
     opacity: 0.6;
 }

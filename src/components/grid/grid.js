@@ -5,11 +5,11 @@ import '../../styles/grid/grid.css';
 const Grid = ({videoList}) => {
 
     const gridItems = videoList.map(({channelTitle, thumbnail, viewCount, videoTitle, videoId}) => {
-        return <GridItem    key={videoId} 
-                            video={thumbnail} 
-                            title={videoTitle} 
+        return <GridItem    videoId={videoId} 
+                            thumbnail={thumbnail} 
+                            videoTitle={videoTitle} 
                             channelTitle={channelTitle} 
-                            count={viewCount}/>
+                            viewCount={viewCount}/>
     });
 
     return(

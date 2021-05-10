@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
-import '../../styles/forms/modal-form.css';
+import '../../styles/forms/favourite-form.css';
 import { connect } from 'react-redux';
 import {favouriteListItemIsAdded, favouriteListItemIsUpdate} from '../../redux/actions/index';
 
-const ModalForm = ({disableModal, 
-                    id, 
-                    input,
+const FavouriteForm = ({
+                    disableModal, 
+                    id = undefined, 
+                    input = undefined,
                     favouriteList, 
                     favouriteListItemIsAdded, 
-                    favouriteListItemIsUpdate}) => {
+                    favouriteListItemIsUpdate
+                }) => {
 
     const   [request, setRequest] = useState(''),
             [title, setTitle] = useState(''),
-            [selector, setSelector] = useState('По дате загрузки'),
+            [sortBy, setSortBy] = useState('date'),
             [sliderCount, setSliderCount] = useState(12);
 
     useEffect(() => {
@@ -22,9 +24,9 @@ const ModalForm = ({disableModal,
         }
         if(id) {
             const favouriteListItem = favouriteList.find((item, idx) => idx === +id);
-            setRequest(favouriteListItem.requireName);
+            setRequest(favouriteListItem.requestName);
             setTitle(favouriteListItem.title);
-            setSelector(favouriteListItem.sortBy);
+            setSortBy(favouriteListItem.sortBy);
             setSliderCount(favouriteListItem.count);
         }
     }, [id, input]);
@@ -35,7 +37,7 @@ const ModalForm = ({disableModal,
                 break;
             case 'title': setTitle(event.target.value); 
                 break;
-            case 'selector': setSelector(event.target.value); 
+            case 'selector': setSortBy(event.target.value); 
                 break;
         }
     }
@@ -43,9 +45,9 @@ const ModalForm = ({disableModal,
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = {
-            requireName: request,
-            title: title,
-            sortBy: selector,
+            requestName: request,
+            title,
+            sortBy,
             count: sliderCount
         };
         if(id){
@@ -58,7 +60,7 @@ const ModalForm = ({disableModal,
     }
 
     return(
-        <form className="modal__form" onSubmit={handleSubmit}>
+        <form className="favourite__form" onSubmit={handleSubmit}>
             <div className="form__title">Сохранить запрос</div>
             <div className="form__field">
                 <div className="field__title">Запрос</div>
@@ -80,7 +82,7 @@ const ModalForm = ({disableModal,
                 <div className="field__title">Сортировать по</div>
                 <select className="field__field" 
                         name="selector" 
-                        value={selector}  
+                        value={sortBy}  
                         onChange={handleChange}>
                     <option value="relevance">По релевантности</option>
                     <option value="date">По дате загрузки</option>
@@ -130,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteForm);

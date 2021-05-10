@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../../styles/pages/main/body.css';
 
-import Search from './search';
 import ScreensMain from '../../../screens/screens-main';
 
 const Body = () => {

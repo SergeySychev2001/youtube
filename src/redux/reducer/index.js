@@ -3,19 +3,19 @@ const initialState = {
     error: null,
     favouriteList: [
         {
-            requireName: 'Metallica',
+            requestName: 'Metallica',
             title: 'Metallica',
             sortBy: 'rating',
             count: 12
         },
         {
-            requireName: 'Megadeth',
+            requestName: 'Megadeth',
             title: 'Megadeth',
             sortBy: 'relevance',
             count: 17
         },
         {
-            requireName: 'Anthrax',
+            requestName: 'Anthrax',
             title: 'Anthrax',
             sortBy: 'date',
             count: 15
@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
             };
         case 'FAVOURITELIST_ITEM_IS_ADDED':
             const newFavouriteListItem = {
-                requireName: action.payload.requireName,
+                requestName: action.payload.requestName,
                 title: action.payload.title,
                 sortBy: action.payload.sortBy,
                 count: action.payload.count
@@ -63,7 +63,7 @@ const reducer = (state = initialState, action) => {
             }
         case 'FAVOURITELIST_ITEM_IS_UPDATE':
             const updatedFavouriteListItem = {
-                requireName: action.payload.data.requireName,
+                requestName: action.payload.data.requestName,
                 title: action.payload.data.title,
                 sortBy: action.payload.data.sortBy,
                 count: action.payload.data.count
