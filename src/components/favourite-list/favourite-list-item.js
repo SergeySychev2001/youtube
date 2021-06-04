@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/favourite-list/favourite-list-item.css';
 import Modal from '../modal';
-import {favouriteListItemIsDeleted, updateVideoList} from '../../redux/actions/index';
+import {updateVideoList, favouriteListItemIsDeleted} from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import FavouriteForm from '../forms/favourite-form';
@@ -11,11 +11,10 @@ const FavouriteListItem = ({
                             id, 
                             title, 
                             favouriteList,
-                            favouriteListItemIsDeleted,
                             updateVideoList,
-                            history
+                            history,
+                            favouriteListItemIsDeleted
                         }) => {
-
     const [modalMode, setModalMode] = useState(false);
 
     const modalContent = modalMode ? 
@@ -25,7 +24,7 @@ const FavouriteListItem = ({
     : null;
 
     const toSearchVideos = () => {
-        const requestName = favouriteList[id].requireName;
+        const requestName = favouriteList[id].requestName;
         const maxResults = favouriteList[id].count;
         const order = favouriteList[id].sortBy;
         updateVideoList(requestName, maxResults, order);
@@ -47,7 +46,16 @@ const FavouriteListItem = ({
                             }}
                     >Редактировать</button>
                     <button className="item__delete-btn" 
-                            onClick={() => favouriteListItemIsDeleted(id)}
+                            onClick={() => {
+                                const userId = sessionStorage.getItem('userId');
+                                let videoList = JSON.parse(localStorage.getItem(userId));
+                                videoList = [
+                                    ...videoList.slice(0, id),
+                                    ...videoList.slice(id + 1)
+                                ];
+                                localStorage.setItem(userId, JSON.stringify(videoList));
+                                favouriteListItemIsDeleted(id);
+                            }}
                     >Удалить</button>
                 </div>
             </li>
@@ -64,8 +72,8 @@ const mapStateToProps = ({favouriteList}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        favouriteListItemIsDeleted: (id) => dispatch(favouriteListItemIsDeleted(id)),
-        updateVideoList: updateVideoList(dispatch)
+        updateVideoList: updateVideoList(dispatch),
+        favouriteListItemIsDeleted: (id) => dispatch(favouriteListItemIsDeleted(id))
     }
 }
 

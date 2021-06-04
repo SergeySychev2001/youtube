@@ -51,9 +51,24 @@ const favouriteListItemIsDeleted = (id) => {
     }
 }
 
+const favouriteListIsLoaded = (data) => {
+    return{
+        type: 'FAVOURITELIST_IS_LOADED',
+        payload: data
+    }
+}
+
+const storeIsCleaned = () => {
+    return{
+        type: 'STORE_IS_CLEANED'
+    }
+}
+
 export {
     updateVideoList, 
     favouriteListItemIsAdded, 
     favouriteListItemIsUpdate, 
-    favouriteListItemIsDeleted
+    favouriteListItemIsDeleted,
+    favouriteListIsLoaded,
+    storeIsCleaned
     };

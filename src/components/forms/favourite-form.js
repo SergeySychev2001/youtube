@@ -31,6 +31,18 @@ const FavouriteForm = ({
         }
     }, [id, input]);
 
+    const localStoreChange = (data, id = undefined) => {
+        const userId = sessionStorage.getItem('userId');
+        const videoList = JSON.parse(localStorage.getItem(userId));
+        if(id){
+            videoList[id] = data;
+            localStorage.setItem(userId, JSON.stringify(videoList));
+        }else{
+            videoList.push(data);
+            localStorage.setItem(userId, JSON.stringify(videoList));
+        }
+    }
+
     const handleChange = (event) => {
         switch(event.target.name){
             case 'request': setRequest(event.target.value); 
@@ -42,7 +54,7 @@ const FavouriteForm = ({
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = {
             requestName: request,
@@ -52,10 +64,12 @@ const FavouriteForm = ({
         };
         if(id){
             favouriteListItemIsUpdate(id, data);
+            localStoreChange(data, id);
             disableModal();
             return
         }
         favouriteListItemIsAdded(data);
+        localStoreChange(data);
         disableModal();
     }
 

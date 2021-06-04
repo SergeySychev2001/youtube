@@ -6,8 +6,14 @@ import FavouriteListItem from './favourite-list-item';
 
 
 const FavouriteList = ({favouriteList}) => {
+
+    console.log(favouriteList)
+
     const favouriteListItems = favouriteList.map(({title}, idx) => {
-        return <FavouriteListItem key={idx} id={idx} title={title}/>;
+        return <FavouriteListItem   key={idx} 
+                                    id={idx} 
+                                    title={title}
+                                    />;
     });
 
     return(

@@ -1,26 +1,7 @@
 const initialState = {
     loading: false,
     error: null,
-    favouriteList: [
-        {
-            requestName: 'Metallica',
-            title: 'Metallica',
-            sortBy: 'rating',
-            count: 12
-        },
-        {
-            requestName: 'Megadeth',
-            title: 'Megadeth',
-            sortBy: 'relevance',
-            count: 17
-        },
-        {
-            requestName: 'Anthrax',
-            title: 'Anthrax',
-            sortBy: 'date',
-            count: 15
-        }
-    ],
+    favouriteList: [],
     videoData: {}
 }
 
@@ -60,7 +41,7 @@ const reducer = (state = initialState, action) => {
                     ...state.favouriteList,
                     newFavouriteListItem
                 ]
-            }
+            };
         case 'FAVOURITELIST_ITEM_IS_UPDATE':
             const updatedFavouriteListItem = {
                 requestName: action.payload.data.requestName,
@@ -75,14 +56,33 @@ const reducer = (state = initialState, action) => {
                     updatedFavouriteListItem,
                     ...state.favouriteList.slice(+action.payload.id + 1)
                 ]
-            }
+            };
         case 'FAVOURITELIST_ITEM_IS_DELETED':
-            return {
+            if (state.favouriteList.length == 1){
+                return{
+                    ...state,
+                    favouriteList: []
+                }
+            }else{
+                return {
+                    ...state,
+                    favouriteList: [
+                        ...state.favouriteList.slice(0, +action.payload),
+                        ...state.favouriteList.slice(+action.payload + 1)
+                    ]
+                }
+            };
+        case 'FAVOURITELIST_IS_LOADED':
+            return{
                 ...state,
-                favouriteList: [
-                    ...state.favouriteList.slice(0, action.payload),
-                    ...state.favouriteList.slice(+action.payload + 1)
-                ]
+                favouriteList: action.payload
+            };
+        case 'STORE_IS_CLEANED':
+            return{
+                loading: false,
+                error: null,
+                favouriteList: [],
+                videoData: {}
             }
         default: return state;
     }
