@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Аналог YouTube
+В данном проекте был реализован аналог Youtube с минимальным функционалом, а именно:
+1. Авторизация пользователя
+2. Поиск видео
+3. Отображение найденных видео в двух видах (таблица и список)
+4. Добавление, изменение и отображение избранных запросов.
+## Страница авторизации
+![image](https://user-images.githubusercontent.com/76484477/120850614-59eb2300-c580-11eb-94e4-c25d7e269275.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+На этой странице нам необходимо ввести логин и пароль пользователя.
 
-## Available Scripts
+!!! Для работы авторизации нам необходимо иметь JSON-SERVER, через который мы запустим базу данных, где хранится информация о пользователях (src/credentials.json)
+## Главная
+После того, как мы выполнили авторизацию, у нас откроется главная страница, где имеется две вкладки ("Поиск" и "Избранное").
+### Вкладка "Поиск"
+Данная вкладка отвечает за поиск видео.
 
-In the project directory, you can run:
+![image](https://user-images.githubusercontent.com/76484477/120850861-b0f0f800-c580-11eb-8fed-5eebd2a1a69b.png)
+#### Результат поиска (Отображение в виде таблицы)
+![image](https://user-images.githubusercontent.com/76484477/120850899-bfd7aa80-c580-11eb-9f52-5d2a214fcb4a.png)
+#### Результат поиска (Отображение в виде списка)
+![image](https://user-images.githubusercontent.com/76484477/120851003-e0a00000-c580-11eb-86e6-5cc88a96b898.png)
+#### Отображение видеоплеера
+![image](https://user-images.githubusercontent.com/76484477/120851078-fe6d6500-c580-11eb-843b-6a9daf964beb.png)
+### Вкладка "Избранное"
+Данная вкладка отвечает за отображение избранных запросов.
 
-### `npm start`
+Избранные запросы каждого пользователя расположены в localStorage.
+#### Избранные запросы
+![image](https://user-images.githubusercontent.com/76484477/120851151-1fce5100-c581-11eb-8163-69fd423995bc.png)
+### Окно сохранения запроса
+Данное окно содержит в себе форму, которая отвечает за добавление нового или изменение существующего запроса.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Параметры формы:
+1. Запрос (То что отправится на YouTube API)
+2. Название (То что будет отображаться во вкладке "Избранное")
+3. Сортировать по (По дате загрузки, По релевантности, По числу просмотров, По рейтингу)
+4. Максимальное количество (Отвечает за то, сколько мы получим видео от YouTube API)
+#### Добавление нового запроса:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![image](https://user-images.githubusercontent.com/76484477/120851252-3e344c80-c581-11eb-873f-c487ab9f6c89.png)
 
-### `npm test`
+#### Изменение уже существующего запроса:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](https://user-images.githubusercontent.com/76484477/120851280-45f3f100-c581-11eb-8d9b-bea5a0cc3cad.png)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
