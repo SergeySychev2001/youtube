@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, useLocation, withRouter } from 'react-router-dom';
-import { storeIsCleaned } from '../../../redux/actions';
+import { logOut, storeIsCleaned } from '../../../redux/actions';
 import '../../../styles/pages/main/header.css';
 
-const Header = ({history, storeIsCleaned}) => {
+const Header = ({history, storeIsCleaned, logOut}) => {
 
     const location = useLocation();
 
     const mainClasses = location.pathname === '/main' ? "button active" : "button";
     const favouritesClasses = location.pathname === '/main/favourites' ? "button active" : "button";
 
-    const logOut = () => {
+    const logOutBtn = () => {
         sessionStorage.clear();
-        history.push('/authorization');
+        logOut();
         storeIsCleaned();
     }
 
@@ -31,7 +31,7 @@ const Header = ({history, storeIsCleaned}) => {
                     </nav>
                     <div>
                         <div></div>
-                        <button className="button" onClick={logOut}>Выйти</button>
+                        <button className="button" onClick={logOutBtn}>Выйти</button>
                     </div>  
                 </div>
             </div>
@@ -41,7 +41,8 @@ const Header = ({history, storeIsCleaned}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        storeIsCleaned: () => dispatch(storeIsCleaned())
+        storeIsCleaned: () => dispatch(storeIsCleaned()),
+        logOut: () => dispatch(logOut())
     }
 }
 

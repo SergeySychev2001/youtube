@@ -1,4 +1,5 @@
 const initialState = {
+    loggedIn: false,
     loading: false,
     error: null,
     favouriteList: [],
@@ -83,7 +84,19 @@ const reducer = (state = initialState, action) => {
                 error: null,
                 favouriteList: [],
                 videoData: {}
+            };
+        case 'SIGN_IN': 
+            return{
+                ...state,
+                loggedIn: true
             }
+        ;
+        case 'LOG_OUT': 
+            return{
+                ...state,
+                loggedIn: false
+            }
+        ;
         default: return state;
     }
 }

@@ -1,15 +1,25 @@
-import React from 'react';
-import { Route, Switch } from 'react-router';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, withRouter } from 'react-router';
 import Authorization from '../components/pages/authorization';
 import Main from '../components/pages/main';
 
-const ScreensApp = () => {
+const ScreensApp = ({loggedIn, history}) => {
+    useEffect(() => {
+        loggedIn ? history.push('/main') : history.push('/authorization');
+    }, [loggedIn])
     return(
         <Switch>
-                <Route path="/authorization" component={Authorization}/>
-                <Route path="/main" component={Main}/>
+            <Route path="/main" component={Main}/>
+            <Route path="/authorization" component={Authorization}/>
         </Switch>
     )
 }
 
-export default ScreensApp; 
+const mapStateToProps = ({loggedIn}) => {
+    return{
+        loggedIn
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(ScreensApp)); 

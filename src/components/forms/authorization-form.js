@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useLocation, withRouter } from 'react-router';
+import { connect } from 'react-redux';
+// import { useLocation, withRouter } from 'react-router';
+import { signIn } from '../../redux/actions';
 import '../../styles/forms/authorization-form.css';
 
-const AuthorizationForm = ({history}) => {
+const AuthorizationForm = ({signIn}) => {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +17,8 @@ const AuthorizationForm = ({history}) => {
         let str = u[0].toString(16).toUpperCase();
         sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('token', `${'00000000'.slice(str.length)}${str}`);
-        history.push('/main');
+        // history.push('/main');
+        signIn();
     }
 
     const handleSubmit = (e) => {
@@ -54,6 +57,10 @@ const AuthorizationForm = ({history}) => {
     )
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return{
+        signIn: () => dispatch(signIn())
+    }
+}
 
-
-export default withRouter(AuthorizationForm); 
+export default connect(null, mapDispatchToProps)(AuthorizationForm); 
